@@ -1,4 +1,21 @@
 language: node_js
-node_js:
-  - "10"
-  - "12"
+os: windows
+node_js: "10"
+env:
+  global:
+    - _FORCE_LOGS=1
+jobs:
+  include:
+    - stage: tests
+      name: unit tests
+      script:
+        - npm test
+      after_success:
+        - npm run coverage
+    - stage:
+      name: functional tests
+      before_script:
+        # re-run installation, so the now transpiled code can be run
+        - npm install
+      script:
+        - npm run e2e-test

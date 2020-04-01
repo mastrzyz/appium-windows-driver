@@ -41,7 +41,7 @@ if (require.main === module) {
   const installScript = path.resolve(__dirname, 'build', 'lib', 'installer.js');
   waitForDeps(function checkInstallScript (err) {
     if (err) {
-      console.warn('Unable to import install script. Re-run `install appium-windows-driver` manually.');
+      console.warn('Unable to import install script. Re-run `npm install appium-windows-driver` manually.');
       return;
     }
     fs.stat(installScript, function attemptInstall (err) {
